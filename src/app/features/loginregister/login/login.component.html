@@ -1,3 +1,58 @@
 <app-navbar></app-navbar>
 
-<p>login works!</p>
+<div class="my-form">
+  <form
+    class="signup-form"
+    [formGroup]="loginUserFormGroup"
+    novalidate
+    (ngSubmit)="loginUserFormGroup.valid && loginUser()"
+  >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>LOGIN</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput type="email" placeholder="Email" formControlName="email">
+              <mat-error *ngIf="loginUserFormGroup.get('email')?.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput type="password" placeholder="Password" formControlName="password">
+              <mat-error *ngIf="loginUserFormGroup.get('password')?.hasError('required')">
+                Password is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="loginUserFormGroup.get('password')?.hasError('minlength')">
+                Minimum length is <strong>8</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-actions class="centered-actions">
+        <button mat-raised-button color="primary" type="submit">
+          Login
+        </button>
+      </mat-card-actions>
+
+      <p>
+        Don't have an account? <a [routerLink]="'/register'">Register here</a>
+      </p>
+      <p>
+        Forgot password? <a [routerLink]="'/forgot-password'">Recover here</a>
+      </p>
+
+    </mat-card>
+  </form>
+</div>

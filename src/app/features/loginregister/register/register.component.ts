@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
-  FormControl,
   Validators,
 } from '@angular/forms';
 
@@ -14,19 +13,23 @@ import {
 })
 export class RegisterComponent implements OnInit {
 
-  registerUserFormGroup?: FormGroup;
-
   constructor(
     private formBuilder: FormBuilder
   ) {}
 
+  registerUserFormGroup = this.formBuilder.group({});
 
   ngOnInit(): void {
     this.registerUserFormGroup = this.formBuilder.group(
       {
         'firstname': ['', [Validators.required]],
         'lastname': ['', [Validators.required]],
-        'username': ['', [Validators.required]],
+        'username': ['',
+          [
+            Validators.required,
+            Validators.email
+          ]
+        ],
         'email': ['', [Validators.required]],
         'password': ['', [
           Validators.required,
@@ -56,6 +59,13 @@ export class RegisterComponent implements OnInit {
       ? null
       : group.controls['confirmPassword'].setErrors({notSame: true})
     ;
+  }
+
+  /**
+   * Register new user
+   */
+  registerUser() {
+
   }
 
 }

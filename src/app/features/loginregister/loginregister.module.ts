@@ -6,18 +6,22 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { MaterialModule } from '../../shared/material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,
     LoginregisterRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
   ]
 })
 export class LoginregisterModule { }

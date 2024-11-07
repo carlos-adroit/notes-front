@@ -1,2 +1,111 @@
 <app-navbar></app-navbar>
-<p>register works!</p>
+
+<div class="my-form">
+  <form
+    class="signup-form"
+    [formGroup]="registerUserFormGroup"
+    novalidate
+    (ngSubmit)="registerUserFormGroup.valid && registerUser()"
+  >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>REGISTER</mat-card-title>
+      </mat-card-header>
+
+      <!-- First name -->
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput type="text" placeholder="first name" formControlName="firstname">
+              <mat-error *ngIf="registerUserFormGroup.get('firstname')?.hasError('required')">
+                First name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Last name -->
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput type="text" placeholder="last name" formControlName="lastname">
+              <mat-error *ngIf="registerUserFormGroup.get('lastname')?.hasError('required')">
+                Last name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Username -->
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput type="text" placeholder="Username" formControlName="username">
+              <mat-error *ngIf="registerUserFormGroup.get('username')?.hasError('required')">
+                Username is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput type="email" placeholder="Email" formControlName="email">
+              <mat-error *ngIf="registerUserFormGroup.get('email')?.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Password -->
+         <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput type="password" placeholder="Password" formControlName="password">
+              <mat-error *ngIf="registerUserFormGroup.get('password')?.hasError('required')">
+                Password is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="registerUserFormGroup.get('password')?.hasError('minlength')">
+                Minimum length should be <strong>8</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+         </div>
+
+         <!-- Confirm password -->
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+                <mat-error *ngIf="registerUserFormGroup.get('confirmPassword')?.hasError('required')">
+                  Confirm password is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="registerUserFormGroup.get('confirmPassword')?.hasError('minlength')">
+                  Minimum length should be <strong>8</strong>
+                </mat-error>
+                <mat-error *ngIf="registerUserFormGroup.get('confirmPassword')?.errors?.['notSame']">
+                  Password does not match
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+      </mat-card-content>
+
+      <mat-card-actions class="centered-actions">
+        <button mat-raised-button color="primary" type="submit">
+          Register
+        </button>
+      </mat-card-actions>
+
+      <p>
+        Already have an account? <a [routerLink]="'/login'">Login here</a>
+      </p>
+
+    </mat-card>
+  </form>
+</div>
