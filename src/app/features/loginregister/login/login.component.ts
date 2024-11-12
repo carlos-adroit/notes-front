@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
 import {
   FormGroup,
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { HelperService } from '../../../shared/helper/helper.service';
+import { ConstantService } from '../../../shared/constant/constant.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ import {
 export class LoginComponent implements OnInit {
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private helperService: HelperService,
   ) {}
 
   loginUserFormGroup: FormGroup = this.formBuilder.group({});
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
    * Login new user
    */
   loginUser() {
-
+    this.helperService.createSnackBar(ConstantService.successMessages.userLoggedIn)
   }
 
 }
