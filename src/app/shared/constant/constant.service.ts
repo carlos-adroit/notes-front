@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,9 @@ export class ConstantService {
     delete: 'delete'
   }
 
-  static localStorage = {
+  static localStorageKeys = {
     token: 'User_Token',
-    user: 'User_Data'
+    userData: 'User_Data'
   }
 
   static errorMessages = {

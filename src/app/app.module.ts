@@ -7,6 +7,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToasterComponent } from './components/toaster/toaster.component';
+import { AuthService } from './services/core/auth/auth.service';
+import { AuthGuardService } from './services/core/guards/auth-guard.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './services/core/interceptors/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,14 @@ import { ToasterComponent } from './components/toaster/toaster.component';
     ReactiveFormsModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    AuthService,
+    AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
